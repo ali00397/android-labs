@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_linearlayout);
+        setContentView(R.layout.activity_main_gridlayout);
         getResources().getString(R.string.toast_message);
         TextView yourtext = findViewById(R.id.textView);
         Button btn = findViewById(R.id.button);
