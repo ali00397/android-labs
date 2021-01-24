@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_alignEnd="@id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@id/textView"
+        android:text="@string/message"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/button_4"
+        android:layout_width="219dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@id/button_4"
+        android:layout_below="@id/button_4"
+        android:layout_marginTop="44dp"
+        android:text="@string/toast_message" />
+
+    <CheckBox
+        android:id="@+id/checkBox_1"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@id/checkBox_1"
+        android:layout_toEndOf="@id/checkBox_1"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="74dp"
+
+
+        android:text="@string/Checkbox" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="184dp"
+        android:layout_height="118dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="-160dp"
+        android:layout_marginBottom="522dp"
+        android:contentDescription="@string/Todo"
+        android:src="@drawable/flag" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="226dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@id/switch2"
+        android:layout_toEndOf="@id/switch2"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/Switch" />
+
+
+    <EditText
+        android:id="@+id/editView"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@id/editView"
+        android:layout_below="@id/editView"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="0dp"
+        android:inputType="textPersonName"
+        android:hint="@string/person_info"
+        android:autofillHints="@string/person_info" />
+
+
+</RelativeLayout>

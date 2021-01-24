@@ -3,4 +3,11 @@
     <string name="app_name">Lab1</string>
     <string name="hello_message">Hello World!</string>
     <string name="ButtonText">I\\\'m a Buton</string>
+    <string name="message">Look at my GUI!</string>
+    <string name="toast_message">Click here!</string>
+    <string name="Todo" translatable="false">type here</string>
+    <string name="Switch">switch on/off</string>
+    <string name="info">write here</string>
+    <string name="Checkbox">Checkbox is here</string>
+    <string name="person_info">put person name</string>
 </resources>
