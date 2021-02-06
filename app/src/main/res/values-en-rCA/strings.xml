@@ -10,4 +10,9 @@
     <string name="info">write here</string>
     <string name="Checkbox">Checkbox is here</string>
     <string name="person_info">put person name</string>
+    <string name="string_personal_info">Enter your email address:</string>
+    <string name="personal_information">Type email here</string>
+    <string name="password">Type your password</string>
+    <string name="password_1">Type your important digit here</string>
+    <string name="ButtonInfo">Login</string>
 </resources>
