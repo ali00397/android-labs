@@ -15,4 +15,6 @@
     <string name="password">Type your password</string>
     <string name="password_1">Type your important digit here</string>
     <string name="ButtonInfo">Login</string>
+    <string name="message_profile">Your profile</string>
+    <string name="profile_1">Your name:</string>
 </resources>
