@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences mypreferences = getSharedPreferences("EmailAddress",MODE_PRIVATE);
         SharedPreferences.Editor editors = mypreferences.edit();
-        editors.putString("EmailAdress", input.getText().toString());
+        editors.putString("EmailAddress", input.getText().toString());
         editors.commit();
 
         input = findViewById(R.id.edit);
