@@ -5,30 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import static android.os.Build.VERSION_CODES.M;
 
 public class MainActivity extends AppCompatActivity {
     EditText input;
 
-
+    public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
     @Override
     protected void onPause() {
         super.onPause();
+        Log.e(ACTIVITY_NAME,"In function: onPaused ran without any issues");
 
-    SharedPreferences mypref = getSharedPreferences("EmailAddress",MODE_PRIVATE);
-        SharedPreferences.Editor editors = mypref.edit();
+
+    SharedPreferences mypreferences = getSharedPreferences("EmailAddress",MODE_PRIVATE);
+        SharedPreferences.Editor editors = mypreferences.edit();
         editors.putString("EmailAdress", input.getText().toString());
         editors.commit();
 
@@ -36,14 +28,6 @@ public class MainActivity extends AppCompatActivity {
         Button loginInfo = findViewById(R.id.button3);
 
         loginInfo.setOnClickListener(clk-> onPause(input.getText().toString()));
-
-
-       // String savedinfo = mypref.getString("important","initial String");
-       // EditText input = findViewById(R.id.edit);
-       // input.getText(savedinfo);
-      //  Intent nextpages = new Intent(this,Activity_Second.class);
-      //  nextpages.putExtra("EmailAdress","email");
-
 
     }
 
@@ -55,32 +39,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
+        Log.e(ACTIVITY_NAME,"In function: onCreate ran without any issues");
 
+        Intent goToprofile = new Intent(this, ProfileActivity.class);
+
+        Button loginInfo = findViewById(R.id.button3);
+        loginInfo.setOnClickListener(bts ->goToprofile.putExtra("Email","EmailAddress"));
+        startActivity(goToprofile);
 
         onPause();
         {
-            
-
-
-
-
-
-
-
-
 
         };
-
-
-
-
-
-
-
 
 
     }
