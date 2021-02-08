@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private void onPause(String toString) {
         SharedPreferences mypref = getSharedPreferences("EmailAddress",MODE_PRIVATE);
         SharedPreferences.Editor editors = mypref.edit();
-        editors.putString("EmailAdress", input.getText().toString());
+        editors.putString("EmailAddress", input.getText().toString());
         editors.commit();
     }
 
