@@ -24,7 +24,8 @@
         android:inputType="textEmailAddress"
         android:labelFor="@id/edit"
         android:hint="@string/personal_information"
-        android:text="@string/personal_information" />
+        android:text="@string/personal_information"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:layout_width="match_parent"
