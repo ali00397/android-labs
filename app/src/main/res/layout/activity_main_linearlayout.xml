@@ -57,7 +57,7 @@
         android:layout_gravity="fill"
         android:layout_weight="1"
         android:contentDescription="@string/Todo"
-        android:src="@drawable/flag" />
+        android:src="@drawable/abc_vector_test" />
 
     <Switch
         android:id="@+id/switch7"
