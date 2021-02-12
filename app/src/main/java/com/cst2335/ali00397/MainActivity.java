@@ -21,10 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences mypreferences = getSharedPreferences("EmailAddress",MODE_PRIVATE);
         SharedPreferences.Editor editors = mypreferences.edit();
+        EditText input = findViewById(R.id.edit2);
         editors.putString("EmailAddress", input.getText().toString());
         editors.commit();
 
-        input = findViewById(R.id.edit);
+
         Button loginInfo = findViewById(R.id.button3);
 
         loginInfo.setOnClickListener(clk-> onPause(input.getText().toString()));
