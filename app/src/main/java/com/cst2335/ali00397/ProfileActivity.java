@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
         Intent fromMain = getIntent();
         fromMain.getStringExtra("Email");
         EditText emailEdittext = findViewById(R.id.edit2);
-        emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));
+        emailEdittext.setText(fromMain.getStringExtra("Email"));
 
 
 

@@ -2,6 +2,7 @@ package com.cst2335.ali00397;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Log.e(ACTIVITY_NAME, "In function: onPaused ran without any issues");
 
 
-        mypref = getSharedPreferences("EmailAddress", MODE_PRIVATE);
+        mypref = getSharedPreferences("EmailAddress", Context.MODE_PRIVATE);
         String savedText = mypref.getString("important","default string");
-        EditText inputText = findViewById(R.id.edit);
+        EditText inputText = findViewById(R.id.edit2);
         inputText.setText(savedText);
         Button loginInfo = findViewById(R.id.button3);
         loginInfo.setOnClickListener(clk -> onPause(inputText.getText().toString()));
