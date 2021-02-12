@@ -62,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_snapshot_main);
 
         ImageButton mImageButton = findViewById(R.id.click);
-        mImageButton.setOnClickListener(bts -> onActivityResult(REQUEST_IMAGE_CAPTURE,RESULT_OK, ));
+
         Intent fromMain = getIntent();
         fromMain.getStringExtra("Email");
         EditText emailEdittext = findViewById(R.id.edit2);
