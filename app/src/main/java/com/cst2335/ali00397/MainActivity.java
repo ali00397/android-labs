@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e(ACTIVITY_NAME, "In function: onPaused ran without any issues");
 
 
-        mypref = getSharedPreferences("EmailAddress", Context.MODE_PRIVATE);
+        mypref = getSharedPreferences("EmailAddress", MODE_PRIVATE);
         String savedText = mypref.getString("important","default string");
         EditText inputText = findViewById(R.id.edit2);
         inputText.setText(savedText);
