@@ -53,10 +53,7 @@ public class MainActivity extends AppCompatActivity {
         loginInfo.setOnClickListener(bts ->goToprofile.putExtra("Email","EmailAddress"));
         startActivity(goToprofile);
 
-        onPause();
-        {
 
-        };
 
 
     }
