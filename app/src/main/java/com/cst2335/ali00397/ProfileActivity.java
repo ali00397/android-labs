@@ -1,17 +1,20 @@
 package com.cst2335.ali00397;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
+
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 
+
 import androidx.appcompat.app.AppCompatActivity;
+
+
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -45,6 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             ImageButton mImageButton = findViewById(R.id.click);
             mImageButton.setImageBitmap(imageBitmap);
+
             Log.e(ACTIVITY_NAME,"In function: onActivityResult ran without any difficult");
 
         }
@@ -58,10 +62,15 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_snapshot_main);
 
         ImageButton mImageButton = findViewById(R.id.click);
+
         Intent fromMain = getIntent();
         fromMain.getStringExtra("Email");
-        EditText emailEditText = null;
-        emailEditText.setText(fromMain.getStringExtra("Email"));
+        EditText emailEdittext = findViewById(R.id.edit2);
+        emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));
+
+
+
+
         
         Log.e(ACTIVITY_NAME,"In function: onCreate properly");
 
@@ -94,6 +103,8 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         }
+
+
 
 
 
