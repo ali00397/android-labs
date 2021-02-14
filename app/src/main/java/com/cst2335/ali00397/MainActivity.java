@@ -50,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
-
-        Log.e(ACTIVITY_NAME, "In function: onCreate ran without any issues");
-
         Intent goToprofile = new Intent(this, ProfileActivity.class);
 
         //sharepreference
@@ -68,10 +65,12 @@ public class MainActivity extends AppCompatActivity {
         Button loginInfo = findViewById(R.id.button3);
         loginInfo.setOnClickListener(bts -> {
 
-            goToprofile.putExtra("Email", "EmailAddress");
+            goToprofile.putExtra("Email", inputText.getText().toString());
             startActivity(goToprofile);
 
 
         });
+
+        Log.e(ACTIVITY_NAME, "In function: onCreate ran without any issues");
     }
 }
