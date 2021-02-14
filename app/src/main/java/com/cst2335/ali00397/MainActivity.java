@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences mypref = getSharedPreferences("EmailAddress", MODE_PRIVATE);
         String savedText = mypref.getString("important","default string");
-        EditText inputText = findViewById(R.id.edit2);
+        EditText inputText = findViewById(R.id.edit);
         inputText.setText(savedText);
         Button loginInfo = findViewById(R.id.button3);
         loginInfo.setOnClickListener(clk -> onPause(inputText.getText().toString()));
