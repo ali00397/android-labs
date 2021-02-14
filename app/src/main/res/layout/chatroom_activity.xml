@@ -22,7 +22,8 @@
             android:layout_width="122dp"
             android:layout_height="match_parent"
             android:textColor="@color/white"
-            android:text="@string/send" />
+            android:text="@string/send"
+            android:src="@drawable/row_send"/>
 
         <EditText
             android:layout_width="178dp"
@@ -37,6 +38,7 @@
             android:layout_height="match_parent"
             android:textColor="@color/white"
             android:text="@string/received"
+            android:src="@drawable/row_received"
             />
     </LinearLayout>
 
