@@ -7,17 +7,23 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 
 
 public class ProfileActivity extends AppCompatActivity {
 
+    ListAdapter ourAdapter;
     /**private static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
 
     @Override
@@ -55,18 +61,23 @@ public class ProfileActivity extends AppCompatActivity {
     }*/
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_snapshot_main);
+
+        ListView list = findViewById(R.id.list_item);
+        list.setAdapter(ourAdapter);
+
+        /*setContentView(R.layout.activity_snapshot_main);
 
         ImageButton mImageButton = findViewById(R.id.click);
 
         Intent fromMain = getIntent();
         fromMain.getStringExtra("Email");
         EditText emailEdittext = findViewById(R.id.edit2);
-        emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));
+        emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));*/
 
 
 
@@ -76,6 +87,32 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private ArrayList<String> element = new ArrayList<>();
+
+    public class MylistAdapter extends BaseAdapter{
+
+
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
+        }
     }
 
 
