@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
+    ImageButton mImageButton;
 
 
     @Override
@@ -46,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ImageButton mImageButton = findViewById(R.id.click);
+            //ImageButton mImageButton = findViewById(R.id.click);
             mImageButton.setImageBitmap(imageBitmap);
 
             Log.e(ACTIVITY_NAME, "In function: onActivityResult ran without any difficult");
@@ -67,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
         fromMain.getStringExtra("Email");
         EditText emailEdittext = findViewById(R.id.edit2);
         emailEdittext.setText(fromMain.getStringExtra("Email"));
-
+        mImageButton = findViewById(R.id.click);
 
         Log.e(ACTIVITY_NAME, "In function: onCreate properly");
 
