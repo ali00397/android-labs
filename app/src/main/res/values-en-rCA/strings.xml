@@ -23,4 +23,7 @@
     <string name="picture">Your picture:</string>
     <string name="click">click the button to take a picture</string>
     <string name="String_click">Click on the button above to take a picture</string>
+    <string name="send">Send</string>
+    <string name="chathere">Chat here!</string>
+    <string name="received">Received</string>
 </resources>

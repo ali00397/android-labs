@@ -20,24 +20,24 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
 
+
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(ACTIVITY_NAME,"In function: onPaused ran without any issues");
+        Log.e(ACTIVITY_NAME, "In function: onPaused ran without any issues");
     }
-
 
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e(ACTIVITY_NAME,"In function: onStop ran without any issues");
+        Log.e(ACTIVITY_NAME, "In function: onStop ran without any issues");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e(ACTIVITY_NAME,"In function: onStart ran without any difficult");
+        Log.e(ACTIVITY_NAME, "In function: onStart ran without any difficult");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
             ImageButton mImageButton = findViewById(R.id.click);
             mImageButton.setImageBitmap(imageBitmap);
 
-            Log.e(ACTIVITY_NAME,"In function: onActivityResult ran without any difficult");
+            Log.e(ACTIVITY_NAME, "In function: onActivityResult ran without any difficult");
 
         }
     }
@@ -69,11 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));
 
 
-
-
-        
-        Log.e(ACTIVITY_NAME,"In function: onCreate properly");
-
+        Log.e(ACTIVITY_NAME, "In function: onCreate properly");
 
 
     }
@@ -85,33 +81,36 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Log.e(ACTIVITY_NAME,"In function: onResume ran without any issues");
+        Log.e(ACTIVITY_NAME, "In function: onResume ran without any issues");
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(ACTIVITY_NAME,"In function: onDestroy ran without any issues");
+        Log.e(ACTIVITY_NAME, "In function: onDestroy ran without any issues");
     }
 
 
-    private void dispatchTakePictureIntent(){
+    private void dispatchTakePictureIntent() {
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePicture.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(takePicture,REQUEST_IMAGE_CAPTURE);
+        if (takePicture.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
 
 
         }
-
-
-
-
-
-
-
-
-
-
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
