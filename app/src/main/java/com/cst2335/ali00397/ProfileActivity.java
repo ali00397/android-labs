@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
+    /**private static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
 
     @Override
     protected void onPause() {
@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
             Log.e(ACTIVITY_NAME,"In function: onActivityResult ran without any difficult");
 
         }
-    }
+    }*/
 
 
     @Override
@@ -72,14 +72,14 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         
-        Log.e(ACTIVITY_NAME,"In function: onCreate properly");
+       /* Log.e(ACTIVITY_NAME,"In function: onCreate properly");*/
 
 
 
     }
 
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+   /* static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onResume() {
@@ -102,7 +102,7 @@ public class ProfileActivity extends AppCompatActivity {
             startActivityForResult(takePicture,REQUEST_IMAGE_CAPTURE);
 
 
-        }
+        }*/
 
 
 
@@ -114,4 +114,4 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     }
-}
+
