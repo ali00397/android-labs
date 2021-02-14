@@ -14,7 +14,7 @@ import java.text.BreakIterator;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences mypref = null;
+
 
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e(ACTIVITY_NAME, "In function: onPaused ran without any issues");
 
 
-        mypref = getSharedPreferences("EmailAddress", MODE_PRIVATE);
+        SharedPreferences mypref = getSharedPreferences("EmailAddress", MODE_PRIVATE);
         String savedText = mypref.getString("important","default string");
         EditText inputText = findViewById(R.id.edit2);
         inputText.setText(savedText);
@@ -34,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onPause(String savedInfo) {
+        SharedPreferences mypref = getSharedPreferences("EmailAddress", MODE_PRIVATE);
         SharedPreferences.Editor editors = mypref.edit();
         editors.putString("EmailAddress", savedInfo);
         editors.commit();
+
     }
 
 
