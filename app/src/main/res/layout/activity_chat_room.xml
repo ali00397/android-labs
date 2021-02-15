@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:textColor="@color/white"
             android:text="@string/send"
-            android:src="@drawable/row_send"/>
+            
 
         <EditText
             android:layout_width="178dp"
@@ -36,11 +36,12 @@
             " />
 
         <Button
+            android:id="@+id/received"
             android:layout_width="109dp"
             android:layout_height="match_parent"
             android:textColor="@color/white"
             android:text="@string/received"
-            android:src="@drawable/row_received"
+
             />
     </LinearLayout>
 

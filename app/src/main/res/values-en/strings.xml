@@ -28,6 +28,9 @@
     <string name="received">Received</string>
     <string name="chatroom">ChatRoom</string>
     <string name="chatrooms">ChatRooms</string>
+    <string name="Todos">image</string>
+    <string name="todo">TODO</string>
+    <string name="right">TODO</string>
 
 
 </resources>

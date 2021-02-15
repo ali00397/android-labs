@@ -1,14 +1,19 @@
 package com.cst2335.ali00397;
 
+import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +22,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -26,7 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
     private ArrayList<String> list = new ArrayList<>();
     ListAdapter ourAdapter;
     Button goToChat;
-
 
 
 
@@ -42,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));
         Intent goTochatroom = new Intent(this, ChatRoomActivity.class);
         Button gotoChat = findViewById(R.id.goToChat);
-        gotoChat.setOnClickListener(v->{
+        gotoChat.setOnClickListener(v -> {
             startActivity(goTochatroom);
         });
 
@@ -51,52 +56,77 @@ public class ProfileActivity extends AppCompatActivity {
         lists.setAdapter(ourAdapter);
 
 
-
-    Button sended = findViewById(R.id.send);
-    sended.setOnClickListener(click -> {
+        Log.e("ACTIVITY_NAME", "In function: onCreate properly");
 
 
+    }
 
 
 
+
+
+      public  class listAdapter extends BaseAdapter {
+            @Override
+            public int getCount() {
+                return list.size();
             }
 
-           );
+            @Override
+            public Object getItem(int position) {
+                return list.get(position);
+            }
 
-        
-       Log.e("ACTIVITY_NAME","In function: onCreate properly");
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                ListView lists = findViewById(R.id.list_item);
+
+                long id;
+                lists.setOnItemLongClickListener((parents, view, positions, ids) -> {
+
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(ProfileActivity.this);
+                    alertbox.setTitle("Chat")
+
+                            .setMessage("chat all you want")
+
+                            .setPositiveButton("ADD", (click, arg) -> {
+                                list.add("hello");
 
 
 
-    }
+                            })
 
 
+                            .setNegativeButton("Remove", (bts, arg) -> {
 
-    public class listAdapter extends BaseAdapter{
+
+                            })
+
+                            .setView(getLayoutInflater().inflate(R.layout.activity_chat_room, null))
+
+                            .create().show();
 
 
-        @Override
-        public int getCount() {
-            return list.size();
+                    return false;
+                });
+
+                return null;
+            }
+
         }
 
-        @Override
-        public Object getItem(int position) {
-            return  list.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
         }
 
 
-    }
+
+
+
+
+
 
 
    /* static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -126,12 +156,4 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-    }
 
