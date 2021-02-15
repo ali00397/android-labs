@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
@@ -22,76 +23,56 @@ import java.util.ArrayList;
 
 
 public class ProfileActivity extends AppCompatActivity {
-
+    private ArrayList<String> list = new ArrayList<>();
     ListAdapter ourAdapter;
-    /**private static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
+    Button goToChat;
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(ACTIVITY_NAME,"In function: onPaused ran without any issues");
-    }
-
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e(ACTIVITY_NAME,"In function: onStop ran without any issues");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.e(ACTIVITY_NAME,"In function: onStart ran without any difficult");
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ImageButton mImageButton = findViewById(R.id.click);
-            mImageButton.setImageBitmap(imageBitmap);
-
-            Log.e(ACTIVITY_NAME,"In function: onActivityResult ran without any difficult");
-
-        }
-    }*/
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        ListView list = findViewById(R.id.list_item);
-        list.setAdapter(ourAdapter);
-
-        /*setContentView(R.layout.activity_snapshot_main);
-
+        setContentView(R.layout.activity_snapshot_main);
         ImageButton mImageButton = findViewById(R.id.click);
 
         Intent fromMain = getIntent();
         fromMain.getStringExtra("Email");
         EditText emailEdittext = findViewById(R.id.edit2);
-        emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));*/
+        emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));
+        Intent goTochatroom = new Intent(this, ChatRoomActivity.class);
+        Button gotoChat = findViewById(R.id.goToChat);
+        gotoChat.setOnClickListener(v->{
+            startActivity(goTochatroom);
+        });
+
+
+        ListView lists = findViewById(R.id.list_item);
+        lists.setAdapter(ourAdapter);
 
 
 
+    Button sended = findViewById(R.id.send);
+    sended.setOnClickListener(click -> {
+
+
+
+
+
+            }
+
+           );
 
         
-       /* Log.e(ACTIVITY_NAME,"In function: onCreate properly");*/
+       Log.e("ACTIVITY_NAME","In function: onCreate properly");
 
 
 
     }
 
-    private ArrayList<String> list = new ArrayList<>();
 
-    public class MylistAdapter extends BaseAdapter{
+
+    public class listAdapter extends BaseAdapter{
 
 
         @Override
@@ -106,13 +87,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             return null;
         }
+
+
     }
 
 

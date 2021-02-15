@@ -63,6 +63,14 @@
         android:textColor="@color/black"
         android:text="@string/String_click"/>
 
+    <Button
+        android:id="@+id/goToChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="@string/chatrooms"
+        />
+
 
 </LinearLayout>
 

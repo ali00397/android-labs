@@ -26,6 +26,8 @@
     <string name="send">Send</string>
     <string name="chathere">Chat here!</string>
     <string name="received">Received</string>
+    <string name="chatroom">ChatRoom</string>
+    <string name="chatrooms">ChatRooms</string>
 
 
 </resources>
