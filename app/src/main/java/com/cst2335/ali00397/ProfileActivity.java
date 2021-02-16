@@ -100,11 +100,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void dispatchTakePictureIntent() {
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePicture.resolveActivity(getPackageManager()) != null) {
+        //if (takePicture.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
 
 
-        }
+       // }
     }
 }
 
