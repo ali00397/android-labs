@@ -29,10 +29,8 @@ import java.util.ArrayList;
 
 
 public class ProfileActivity extends AppCompatActivity {
-    private ArrayList<String> list = new ArrayList<>();
-    ListAdapter ourAdapter;
-    Button goToChat;
 
+    Button goToChat;
 
 
     @Override
@@ -52,75 +50,9 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
-        ListView lists = findViewById(R.id.list_item);
-        lists.setAdapter(ourAdapter);
-
-
-        Log.e("ACTIVITY_NAME", "In function: onCreate properly");
-
-
     }
 
-
-
-
-
-      public  class listAdapter extends BaseAdapter {
-            @Override
-            public int getCount() {
-                return list.size();
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return list.get(position);
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return position;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                ListView lists = findViewById(R.id.list_item);
-
-                long id;
-                lists.setOnItemLongClickListener((parents, view, positions, ids) -> {
-
-                    AlertDialog.Builder alertbox = new AlertDialog.Builder(ProfileActivity.this);
-                    alertbox.setTitle("Chat")
-
-                            .setMessage("chat all you want")
-
-                            .setPositiveButton("ADD", (click, arg) -> {
-                                list.add("hello");
-
-
-
-
-                            })
-
-
-                            .setNegativeButton("Remove", (bts, arg) -> {
-
-
-                            })
-
-                            .setView(getLayoutInflater().inflate(R.layout.activity_chat_room, null))
-
-                            .create().show();
-
-
-                    return false;
-                });
-
-                return null;
-            }
-
-        }
-
-        }
+}
 
 
 
