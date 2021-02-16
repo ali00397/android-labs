@@ -50,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
             //ImageButton mImageButton = findViewById(R.id.click);
             mImageButton.setImageBitmap(imageBitmap);
 
+
             Log.e(ACTIVITY_NAME, "In function: onActivityResult ran without any difficult");
 
         }
@@ -69,6 +70,10 @@ public class ProfileActivity extends AppCompatActivity {
         EditText emailEdittext = findViewById(R.id.edit2);
         emailEdittext.setText(fromMain.getStringExtra("Email"));
         mImageButton = findViewById(R.id.click);
+        mImageButton.setOnClickListener(clk ->{
+            dispatchTakePictureIntent();
+
+        });
 
         Log.e(ACTIVITY_NAME, "In function: onCreate properly");
 
