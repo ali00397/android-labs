@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
 
         EditText emailInput = findViewById(R.id.edit);
-        SharedPreferences sp = getSharedPreferences("Email", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("Email",MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("Email", emailInput.getText().toString());
+        editor.putString("Email",emailInput.getText().toString());
         editor.commit();
 
         Log.e(ACTIVITY_NAME, "In function: onPaused ran without any issues");
@@ -36,14 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    /*private void onPause(String savedInfo) {
-
-        SharedPreferences.Editor editors = mypref.edit();
-        editors.putString("EmailAddress", savedInfo);
-        editors.commit();
-
-    }*/
 
 
     @Override
@@ -56,11 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mypref = getSharedPreferences("EmailAddress", MODE_PRIVATE);
         String savedText = mypref.getString("Email","");
         EditText inputText = findViewById(R.id.edit);
-        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         inputText.setText(savedText);
-
-       // Button loginInfo = findViewById(R.id.button3);
-        //loginInfo.setOnClickListener(clk -> onPause(inputText.getText().toString()));
 
         Button loginInfo = findViewById(R.id.button3);
         loginInfo.setOnClickListener(bts -> {
