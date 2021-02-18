@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,12 +25,24 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         ListView lists = findViewById(R.id.list_item);
         lists.setAdapter(ourAdapter);
+        Button addbutton = findViewById(R.id.send);
+        Button addbuttons = findViewById(R.id.received);
+
+        addbutton.setOnClickListener(bts ->{
+
+            ourAdapter.notifyDataSetChanged();
+        });
+
+        addbuttons.setOnClickListener(clk ->{
+            ourAdapter.notifyDataSetChanged();
+        });
+
         lists.setOnItemLongClickListener((parents, view, positions, ids) -> {
 
             AlertDialog.Builder alertbox = new AlertDialog.Builder(ChatRoomActivity.this);
             alertbox.setTitle("Chat")
 
-                    .setMessage("chat all you want")
+                    .setMessage("Do you want to delete this?")
 
                     .setPositiveButton("ADD", (click, arg) -> {
                         list.add("hello");
@@ -42,6 +55,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
                     .setNegativeButton("Remove", (bts, arg) -> {
+                        list.add("what up");
+                        ourAdapter.notifyDataSetChanged();
 
 
                     })
