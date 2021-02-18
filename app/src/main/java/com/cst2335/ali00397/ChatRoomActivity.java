@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -96,7 +97,22 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
+            View old = null;
+            View newView = old;
+
+            LayoutInflater inflater = getLayoutInflater();
+
+
+            //making a new view
+            if(newView == null){
+
+                newView = inflater.inflate(R.layout.activity_row_send,parent,false);
+                newView = inflater.inflate(R.layout.activity_received_image,parent,false);
+
+
+            }
 
 
 
