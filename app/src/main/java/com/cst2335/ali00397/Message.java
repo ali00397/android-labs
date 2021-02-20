@@ -11,6 +11,9 @@ public class Message {
     private String firstName,lastName;
     private long id;
 
+    //is it's send btn get clicked, isReceived value should be false
+
+    // if it's rec btn clicked, isR = true
 
 
     public Message(String fn,String ln,long i){
@@ -20,6 +23,8 @@ public class Message {
 
 
     }
+
+
 
 
 
