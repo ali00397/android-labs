@@ -1,8 +1,12 @@
 package com.cst2335.ali00397;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,13 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class ChatRoomActivity extends AppCompatActivity {
     private ArrayList<String> list = new ArrayList<>();
-   MyListAdapter ourAdapter;
+    MyListAdapter ourAdapter;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +32,19 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         ListView lists = findViewById(R.id.list_item);
         lists.setAdapter(ourAdapter);
+
         Button addbutton = findViewById(R.id.send);
         Button addbuttons = findViewById(R.id.received);
 
         addbutton.setOnClickListener(bts ->{
 
+
+            Message oldMessage = new Message("");
             ourAdapter.notifyDataSetChanged();
         });
 
         addbuttons.setOnClickListener(clk ->{
+            Message newMessage = new Message("");
             ourAdapter.notifyDataSetChanged();
         });
 
@@ -76,11 +86,57 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
+    public void loadDataFromDatabase(){
 
 
 
 
-    public  class MyListAdapter extends BaseAdapter {
+    }
+
+
+    public class MyOpener extends SQLiteOpenHelper{
+
+        protected final static String DATABASE_NAME ="ContactsInfoDB";
+        protected final static int VERSION_NUM = 1;
+        private final static String TABLE_NAME ="CONTACTS";
+        private final static String COL_FIRST_NAME = "FIRSTNAME";
+        private final static String COL_LAST_NAME = "LASTNAME";
+        private final static String COL_ID = "_id";
+
+
+
+
+        public MyOpener(Context ctx)
+        {
+            super(ctx, DATABASE_NAME, null, VERSION_NUM);
+
+
+    }
+
+        @Override
+        public void onCreate(SQLiteDatabase db)
+        {
+            db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + COL_FIRST_NAME + " text,"
+                    + COL_LAST_NAME + " text);");  // add or remove columns
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME);
+
+            //Create the new table:
+            onCreate(db);
+
+        }
+
+    }
+
+
+
+
+
+        public  class MyListAdapter extends BaseAdapter {
         @Override
         public int getCount() {
             return list.size();
