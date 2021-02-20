@@ -6,8 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Message {
-
-    private final static String texts ="";
+//attributs, string, id, boolean: to see whether or not it's send message or receive message
+    private String texts;
 
 
 
