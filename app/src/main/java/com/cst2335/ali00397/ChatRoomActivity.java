@@ -31,6 +31,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         addbutton.setOnClickListener(bts ->{
 
+
+            Message myMessage = new Message();
+            myMessage.toString();
+
             ourAdapter.notifyDataSetChanged();
         });
 

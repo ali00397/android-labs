@@ -7,6 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Message {
 
+    private final static String texts ="";
+
+
+
+    public Message(String texts){
+
+
+    }
+
+
+
 
 
 }
