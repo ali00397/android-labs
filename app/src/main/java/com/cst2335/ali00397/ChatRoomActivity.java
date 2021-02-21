@@ -30,15 +30,14 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button addbuttons = findViewById(R.id.received);
 
         addbutton.setOnClickListener(bts ->{
-
-
-            Message myMessage = new Message();
-            myMessage.toString();
-
+            Message ourMessage = new Message("",true);
+            ourMessage.isSend();
             ourAdapter.notifyDataSetChanged();
         });
 
         addbuttons.setOnClickListener(clk ->{
+            Message myMessage = new Message("",false);
+            myMessage.isSend();
             ourAdapter.notifyDataSetChanged();
         });
 
