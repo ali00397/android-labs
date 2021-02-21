@@ -25,9 +25,12 @@ public class Message {
 
     }
 
+    public Message(String message, long newId) {
 
+    }
 
-
+    public Message(long newId) {
+    }
 
 
     public void update(String message){

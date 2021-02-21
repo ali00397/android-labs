@@ -1,9 +1,9 @@
 package com.cst2335.ali00397;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -37,6 +36,19 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button receivedbutton = findViewById(R.id.received);
 
         sendbutton.setOnClickListener(bts ->{
+
+            ContentValues newRowValues = new ContentValues();
+
+            //Now provide a value for every database column defined in MyOpener.java:
+            String message = list.get(1).getMessage();
+            //put string name in the NAME column:
+
+
+            newRowValues.put(MyOpener.COL_MESSAGE,message);
+            //put string email in the EMAIL column:
+            long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
+
+            Message myMessage = new Message(message,newId);
 
 
             Message oldMessage = new Message("",true);
@@ -85,6 +97,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     public void loadDataFromDatabase(){
 
+        MyOpener dbOpener = new MyOpener(this);
+
 
 
 
@@ -93,10 +107,11 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     public class MyOpener extends SQLiteOpenHelper{
 
+
         protected final static String DATABASE_NAME ="ContactsInfoDB";
         protected final static int VERSION_NUM = 1;
         private final static String TABLE_NAME ="CONTACTS";
-        private final static String COL_FIRST_NAME = "FIRSTNAME";
+        private final static String COL_MESSAGE = "MESSAGE";
         private final static String COL_LAST_NAME = "LASTNAME";
         private final static String COL_ID = "_id";
 
@@ -114,8 +129,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         public void onCreate(SQLiteDatabase db)
         {
             db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + COL_FIRST_NAME + " text,"
-                    + COL_LAST_NAME + " text);");  // add or remove columns
+                    + COL_MESSAGE + " text);");  // add or remove columns
         }
 
         @Override
@@ -133,6 +147,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
 
+
+
         public  class MyListAdapter extends BaseAdapter {
         @Override
         public int getCount() {
@@ -144,12 +160,13 @@ public class ChatRoomActivity extends AppCompatActivity {
             return list.get(position);
         }
 
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
 
-        @Override
+
+            @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
             View old = null;
@@ -173,7 +190,10 @@ public class ChatRoomActivity extends AppCompatActivity {
             return null;
         }
 
+
+        }
+
     }
 
 
-    }
+
