@@ -15,7 +15,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ChatRoomActivity extends AppCompatActivity {
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<Message> list = new ArrayList<>();
+
+
    MyListAdapter ourAdapter;
 
     @Override
@@ -50,6 +52,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     .setPositiveButton("ADD", (click, arg) -> {
                         list.add("hello");
+
                         ourAdapter.notifyDataSetChanged();
 
 
@@ -59,7 +62,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
                     .setNegativeButton("Remove", (bts, arg) -> {
-                        list.add("what up");
                         ourAdapter.notifyDataSetChanged();
 
 
