@@ -8,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Message {
 
-    private String firstName,lastName;
+    private String Message;
+    private boolean isSend;
     private long id;
 
     //is it's send btn get clicked, isReceived value should be false
@@ -16,9 +17,9 @@ public class Message {
     // if it's rec btn clicked, isR = true
 
 
-    public Message(String fn,String ln,long i){
-        firstName = fn;
-        lastName = ln;
+    public Message(String message,boolean isSend,long i){
+        this.Message= message;
+        this.isSend = isSend;
         id = i;
 
 
@@ -29,34 +30,30 @@ public class Message {
 
 
 
-    public void update(String fn,String ln){
-        firstName = fn;
-        lastName = ln;
+    public void update(String message){
+        this.Message = message;
 
 
 
     }
 
-    public Message(String fn, String ln) { this(fn, ln, 0);}
+    public Message(String message, boolean isSend) { this(message, isSend, 0);}
 
 
-
-    public String getFirstName() {
-        return firstName;
+    public String getMessage() {
+        return Message;
     }
 
-    public void setFirstName(String firstName) {
-
-        this.firstName = firstName;
+    public void setMessage(String message) {
+        Message = message;
     }
 
-    public String getLastName() {
-
-        return lastName;
+    public boolean isSend() {
+        return isSend;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSend(boolean send) {
+        isSend = send;
     }
 
     public long getId() {

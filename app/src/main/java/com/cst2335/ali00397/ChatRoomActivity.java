@@ -33,18 +33,20 @@ public class ChatRoomActivity extends AppCompatActivity {
         ListView lists = findViewById(R.id.list_item);
         lists.setAdapter(ourAdapter);
 
-        Button addbutton = findViewById(R.id.send);
-        Button addbuttons = findViewById(R.id.received);
+        Button sendbutton = findViewById(R.id.send);
+        Button receivedbutton = findViewById(R.id.received);
 
-        addbutton.setOnClickListener(bts ->{
+        sendbutton.setOnClickListener(bts ->{
 
 
-            Message oldMessage = new Message("");
+            Message oldMessage = new Message("",true);
+            oldMessage.isSend();
             ourAdapter.notifyDataSetChanged();
         });
 
-        addbuttons.setOnClickListener(clk ->{
-            Message newMessage = new Message("");
+        receivedbutton.setOnClickListener(clk ->{
+            Message newMessage = new Message("",false);
+            newMessage.isSend();
             ourAdapter.notifyDataSetChanged();
         });
 
@@ -55,18 +57,13 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     .setMessage("Do you want to delete this?")
 
-                    .setPositiveButton("ADD", (click, arg) -> {
-                        list.add("hello");
+                    .setPositiveButton("No", (click, arg) -> {
                         ourAdapter.notifyDataSetChanged();
-
-
-
 
                     })
 
 
-                    .setNegativeButton("Remove", (bts, arg) -> {
-                        list.add("what up");
+                    .setNegativeButton("Yes", (bts, arg) -> {
                         ourAdapter.notifyDataSetChanged();
 
 
@@ -149,7 +146,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            return position;
+            return getItem(position).getId();
         }
 
         @Override
