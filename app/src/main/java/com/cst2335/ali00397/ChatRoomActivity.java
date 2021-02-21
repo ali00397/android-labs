@@ -20,7 +20,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ChatRoomActivity extends AppCompatActivity {
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<Message> list = new ArrayList<>();
     MyListAdapter ourAdapter;
     SQLiteDatabase db;
 
@@ -146,7 +146,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            return getItem(position).getId();
+            return position;
         }
 
         @Override
