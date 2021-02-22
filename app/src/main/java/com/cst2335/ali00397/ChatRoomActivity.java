@@ -51,7 +51,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     .setMessage("Do you want to delete this?")
 
                     .setPositiveButton("ADD", (click, arg) -> {
-                        list.add("hello");
+
 
                         ourAdapter.notifyDataSetChanged();
 
