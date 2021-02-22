@@ -31,6 +31,44 @@ import static com.cst2335.ali00397.MainActivity.ACTIVITY_NAME;
 
 
 public class ProfileActivity extends AppCompatActivity {
+    private static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
+    ImageButton mImageButton;
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(ACTIVITY_NAME, "In function: onPaused ran without any issues");
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(ACTIVITY_NAME, "In function: onStop ran without any issues");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(ACTIVITY_NAME, "In function: onStart ran without any difficult");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            //ImageButton mImageButton = findViewById(R.id.click);
+            mImageButton.setImageBitmap(imageBitmap);
+
+
+            Log.e(ACTIVITY_NAME, "In function: onActivityResult ran without any difficult");
+
+        }
+    }
+
 
     Button goToChat;
 
