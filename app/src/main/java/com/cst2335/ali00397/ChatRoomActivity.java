@@ -53,6 +53,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     .setPositiveButton("ADD", (click, arg) -> {
 
 
+
                         ourAdapter.notifyDataSetChanged();
 
 
