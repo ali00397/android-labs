@@ -104,6 +104,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
+    public void printCursor(){
+
+
+
+    }
+
 
     public class MyOpener extends SQLiteOpenHelper{
 

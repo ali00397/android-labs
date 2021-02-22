@@ -27,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import static com.cst2335.ali00397.MainActivity.ACTIVITY_NAME;
+
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -52,40 +54,33 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-}
 
-
-
-
-
-
-
-
-
-   /* static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        Log.e(ACTIVITY_NAME,"In function: onResume ran without any issues");
+        Log.e(ACTIVITY_NAME, "In function: onResume ran without any issues");
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(ACTIVITY_NAME,"In function: onDestroy ran without any issues");
+        Log.e(ACTIVITY_NAME, "In function: onDestroy ran without any issues");
     }
 
 
-    private void dispatchTakePictureIntent(){
+    private void dispatchTakePictureIntent() {
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePicture.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(takePicture,REQUEST_IMAGE_CAPTURE);
+        if (takePicture.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
 
 
-        }*/
+        }
+    }
+}
 
 
 
