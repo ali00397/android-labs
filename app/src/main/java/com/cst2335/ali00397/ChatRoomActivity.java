@@ -16,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -178,28 +179,32 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
             @Override
-        public View getView(int position, View convertView, ViewGroup parent)
-        {
-            View old = null;
-            View newView = old;
+            public View getView(int position, View convertView, ViewGroup parent)
+            {
+                View old = null;
+                View newView = old;
 
-            LayoutInflater inflater = getLayoutInflater();
+                LayoutInflater inflater = getLayoutInflater();
+
+                Message thisMessage = list.get(position);
+                //making a new view
+                if(thisMessage.isSend()){
+
+                    newView = inflater.inflate(R.layout.activity_row_send,parent,false);
 
 
-            //making a new view
-            if(newView == null){
 
-                newView = inflater.inflate(R.layout.activity_row_send,parent,false);
-                newView = inflater.inflate(R.layout.activity_received_image,parent,false);
+                }
+                else
+                {
+                    newView = inflater.inflate(R.layout.activity_received_image,parent,false);
+                }
+                TextView theText = newView.findViewById(R.id.theText);
+                theText.setText(thisMessage.getMessage());
 
 
+                return  newView;
             }
-
-
-
-
-            return null;
-        }
 
 
         }
