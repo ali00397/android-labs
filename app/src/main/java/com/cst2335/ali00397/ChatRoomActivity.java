@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -108,10 +109,37 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         MyOpener dbOpener = new MyOpener(this);
         db = dbOpener.getWritableDatabase();
+
     }
 
-    public void printCursor(){
+    public void printCursor(Cursor cursor , int version){
+        MyOpener dbOpener = new MyOpener(this);
+        db = dbOpener.getWritableDatabase();
 
+
+        String [] columns = {MyOpener.COL_MESSAGE};
+        //query all the results from the database:
+        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+        //Now the results object has rows of results that match the query.
+        //find the column indices:
+        int emailColumnIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
+        int nameColIndex = results.getColumnIndex(MyOpener.COL_ISSEND);
+        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
+
+        //iterate over the results, return true if there is a next item:
+        while(results.moveToNext())
+        {
+            String name = results.getString(nameColIndex);
+            String email = results.getString(emailColumnIndex);
+            long id = results.getLong(idColIndex);
+
+            Log.e("printCursor","working perfectly o not");
+            Log.e("Database version:","Version is "+ version);
+            Log.e("Number of rows:","Results are :" + cursor.getCount());
+            Log.e("Column names",cursor.getColumnNames().toString());
+
+    }
 
 
     }
@@ -124,7 +152,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         protected final static int VERSION_NUM = 1;
         private final static String TABLE_NAME ="CONTACTS";
         private final static String COL_MESSAGE = "MESSAGE";
-        private final static String COL_LAST_NAME = "LASTNAME";
+        private final static String COL_ISSEND = "ISSEND";
         private final static String COL_ID = "_id";
 
 
@@ -141,7 +169,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         public void onCreate(SQLiteDatabase db)
         {
             db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + COL_MESSAGE + " text);");  // add or remove columns
+                    + COL_MESSAGE + " text,"
+                    + COL_ISSEND+ "text)");
         }
 
         @Override
