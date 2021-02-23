@@ -32,8 +32,9 @@
             android:inputType="text"
             android:textColorHint="@color/black"
             android:hint="@string/chathere"
-            android:autofillHints="no"/>
-            " />
+            android:autofillHints="no"
+            android:id="@+id/theText"/>
+
 
         <Button
             android:id="@+id/received"

@@ -7,9 +7,13 @@
 
 
     <ImageView
-        android:layout_width="194dp"
-        android:layout_height="194dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/row_send"
-        android:contentDescription="TODO"/>
+        android:contentDescription="@string/right" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/theText"/>
 
 </LinearLayout>

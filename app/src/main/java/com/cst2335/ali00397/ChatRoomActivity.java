@@ -33,8 +33,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         ListView lists = findViewById(R.id.list_item);
         lists.setAdapter(ourAdapter = new MyListAdapter());
 
+
         Button sendbutton = findViewById(R.id.send);
         Button receivedbutton = findViewById(R.id.received);
+        EditText et = findViewById(R.id.theText);
 
 
         sendbutton.setOnClickListener(bts ->{
@@ -53,13 +55,13 @@ public class ChatRoomActivity extends AppCompatActivity {
             Message myMessage = new Message(message,newId);*/
 
 
-            Message oldMessage = new Message("",true);
+            Message oldMessage = new Message(et.getText().toString(),true);
             oldMessage.isSend();
             ourAdapter.notifyDataSetChanged();
         });
 
         receivedbutton.setOnClickListener(clk ->{
-            Message newMessage = new Message("",false);
+            Message newMessage = new Message(et.getText().toString(),false);
             newMessage.isSend();
             ourAdapter.notifyDataSetChanged();
         });
