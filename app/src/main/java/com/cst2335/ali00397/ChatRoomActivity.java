@@ -32,6 +32,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         ListView lists = findViewById(R.id.list_item);
         lists.setAdapter(ourAdapter = new MyListAdapter());
+        loadDataFromDatabase();
 
 
         Button sendbutton = findViewById(R.id.send);
@@ -57,12 +58,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             Message oldMessage = new Message(et.getText().toString(),true);
             oldMessage.isSend();
+            list.add(oldMessage);
             ourAdapter.notifyDataSetChanged();
         });
 
         receivedbutton.setOnClickListener(clk ->{
             Message newMessage = new Message(et.getText().toString(),false);
             newMessage.isSend();
+            list.add(newMessage);
             ourAdapter.notifyDataSetChanged();
         });
 
@@ -80,6 +83,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
                     .setNegativeButton("Yes", (bts, arg) -> {
+                        list.remove(positions);
                         ourAdapter.notifyDataSetChanged();
 
 
@@ -102,10 +106,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     public void loadDataFromDatabase(){
 
         MyOpener dbOpener = new MyOpener(this);
-
-
-
-
+        db = dbOpener.getWritableDatabase();
     }
 
     public void printCursor(){
