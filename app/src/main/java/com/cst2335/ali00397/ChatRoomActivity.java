@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         Button sendbutton = findViewById(R.id.send);
         Button receivedbutton = findViewById(R.id.received);
+
 
         sendbutton.setOnClickListener(bts ->{
 
