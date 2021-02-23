@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -27,19 +29,26 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
         ListView lists = findViewById(R.id.list_item);
-        lists.setAdapter(ourAdapter);
+        lists.setAdapter(ourAdapter = new MyListAdapter());
         Button addbutton = findViewById(R.id.send);
         Button addbuttons = findViewById(R.id.received);
 
+        EditText et = findViewById(R.id.theText);
+
         addbutton.setOnClickListener(bts ->{
-            Message ourMessage = new Message("",true);
+            //get what was typed in
+            Message ourMessage = new Message(et.getText().toString(),true);
             ourMessage.isSend();
+            list.add(ourMessage);
+            et.setText("");
             ourAdapter.notifyDataSetChanged();
         });
 
         addbuttons.setOnClickListener(clk ->{
-            Message myMessage = new Message("",false);
+            Message myMessage = new Message(et.getText().toString(),false);
             myMessage.isSend();
+            list.add(myMessage);
+            et.setText("");
             ourAdapter.notifyDataSetChanged();
         });
 
@@ -50,7 +59,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     .setMessage("Do you want to delete this?")
 
-                    .setPositiveButton("ADD", (click, arg) -> {
+                    .setPositiveButton("YES", (click, arg) -> {
+
+                        list.remove(positions);
 
 
 
@@ -62,13 +73,13 @@ public class ChatRoomActivity extends AppCompatActivity {
                     })
 
 
-                    .setNegativeButton("Remove", (bts, arg) -> {
+                    .setNegativeButton("NO", (bts, arg) -> {
                         ourAdapter.notifyDataSetChanged();
 
 
                     })
 
-                    .setView(getLayoutInflater().inflate(R.layout.activity_chat_room, null))
+                  //  .setView(getLayoutInflater().inflate(R.layout.activity_chat_room, null))
 
                     .create().show();
 
@@ -110,20 +121,24 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             LayoutInflater inflater = getLayoutInflater();
 
-
+            Message thisMessage = list.get(position);
             //making a new view
-            if(newView == null){
+            if(thisMessage.isSend()){
 
                 newView = inflater.inflate(R.layout.activity_row_send,parent,false);
-                newView = inflater.inflate(R.layout.activity_received_image,parent,false);
+
 
 
             }
+            else
+            {
+                newView = inflater.inflate(R.layout.activity_received_image,parent,false);
+            }
+        TextView theText = newView.findViewById(R.id.theText);
+        theText.setText(thisMessage.getMessage());
 
 
-
-
-            return null;
+            return  newView;
         }
 
     }
