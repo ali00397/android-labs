@@ -150,15 +150,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             //Create the new table:
             onCreate(db);
-
         }
 
     }
-
-
-
-
-
 
 
         public  class MyListAdapter extends BaseAdapter {
