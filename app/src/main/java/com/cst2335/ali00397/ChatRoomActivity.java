@@ -30,16 +30,16 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
         ListView lists = findViewById(R.id.list_item);
-        lists.setAdapter(ourAdapter);
+        lists.setAdapter(ourAdapter = new MyListAdapter());
 
         Button sendbutton = findViewById(R.id.send);
         Button receivedbutton = findViewById(R.id.received);
 
         sendbutton.setOnClickListener(bts ->{
 
-            ContentValues newRowValues = new ContentValues();
+          /*  ContentValues newRowValues = new ContentValues();*/
 
-            //Now provide a value for every database column defined in MyOpener.java:
+         /**   //Now provide a value for every database column defined in MyOpener.java:
             String message = list.get(1).getMessage();
             //put string name in the NAME column:
 
@@ -48,7 +48,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             //put string email in the EMAIL column:
             long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
 
-            Message myMessage = new Message(message,newId);
+            Message myMessage = new Message(message,newId);*/
 
 
             Message oldMessage = new Message("",true);
@@ -168,7 +168,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             @Override
             public long getItemId(int position) {
-                return position;
+                return list.get(position).getId();
             }
 
 
