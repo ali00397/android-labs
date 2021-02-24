@@ -77,7 +77,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     })
 
-                    .setView(getLayoutInflater().inflate(R.layout.activity_chat_room, null))
+                    //.setView(getLayoutInflater().inflate(R.layout.activity_chat_room, null))
 
                     .create().show();
 
