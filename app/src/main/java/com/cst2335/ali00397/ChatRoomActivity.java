@@ -44,19 +44,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         sendbutton.setOnClickListener(bts ->{
 
-          /*  ContentValues newRowValues = new ContentValues();*/
-
-         /**   //Now provide a value for every database column defined in MyOpener.java:
-            String message = list.get(1).getMessage();
-            //put string name in the NAME column:
-
-
-            newRowValues.put(MyOpener.COL_MESSAGE,message);
-            //put string email in the EMAIL column:
-            long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
-
-            Message myMessage = new Message(message,newId);*/
-
 
             Message oldMessage = new Message(et.getText().toString(),true);
             oldMessage.isSend();
