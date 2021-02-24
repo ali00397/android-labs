@@ -61,6 +61,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             Message oldMessage = new Message(et.getText().toString(),true);
             oldMessage.isSend();
             list.add(oldMessage);
+            et.setText("");
             ourAdapter.notifyDataSetChanged();
         });
 
@@ -68,6 +69,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             Message newMessage = new Message(et.getText().toString(),false);
             newMessage.isSend();
             list.add(newMessage);
+            et.setText("");
             ourAdapter.notifyDataSetChanged();
         });
 
