@@ -205,7 +205,8 @@ public class ChatRoomActivity extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent)
             {
 
-                View newView ;
+                View old = null;
+                View newView = old;
 
                 LayoutInflater inflater = getLayoutInflater();
 
