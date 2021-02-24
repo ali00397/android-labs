@@ -34,7 +34,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         ListView lists = findViewById(R.id.list_item);
         lists.setAdapter(ourAdapter = new MyListAdapter());
-        loadDataFromDatabase();
+
 
 
         Button sendbutton = findViewById(R.id.send);
@@ -98,7 +98,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             return false;
         });
-
+        loadDataFromDatabase();
 
         Log.e("ACTIVITY_NAME", "In function: onCreate properly");
 
