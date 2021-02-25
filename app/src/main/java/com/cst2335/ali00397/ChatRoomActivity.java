@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -43,8 +44,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
             Message oldMessage = new Message(et.getText().toString(),true);
-            oldMessage.isSend();
             list.add(oldMessage);
+            oldMessage.isSend();
             et.setText("");
             ourAdapter.notifyDataSetChanged();
         });
@@ -55,6 +56,31 @@ public class ChatRoomActivity extends AppCompatActivity {
             list.add(newMessage);
             et.setText("");
             ourAdapter.notifyDataSetChanged();
+        });
+
+        Button insertbutton = findViewById(R.id.received);
+
+        insertbutton.setOnClickListener(click -> {
+
+            String message = et.getText().toString();
+            String issend = et.getText().toString();
+
+            ContentValues newRowValues = new ContentValues();
+
+            newRowValues.put(MyOpener.COL_MESSAGE,message);
+            newRowValues.put(MyOpener.COL_ISSEND,issend);
+
+            long newId = db.insert(MyOpener.DATABASE_NAME, null, newRowValues);
+
+            Message newMessages = new Message(message,issend,newId);
+
+            list.add(newMessages);
+            ourAdapter.notifyDataSetChanged();
+
+            et.setText("");
+            et.setText("");
+            Toast.makeText(this, "Inserted item id:"+newId, Toast.LENGTH_LONG).show();
+
         });
 
         lists.setOnItemLongClickListener((parents, view, positions, ids) -> {
@@ -96,6 +122,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         MyOpener dbOpener = new MyOpener(this);
         db = dbOpener.getWritableDatabase();
 
+
+
     }
 
     public void printCursor(Cursor cursor , int version){
@@ -105,7 +133,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         String [] columns = {MyOpener.COL_MESSAGE};
         //query all the results from the database:
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+        Cursor results = db.query(false, MyOpener.DATABASE_NAME, columns, null, null, null, null, null, null);
 
         //Now the results object has rows of results that match the query.
         //find the column indices:

@@ -32,6 +32,9 @@ public class Message {
     public Message(long newId) {
     }
 
+    public Message(String message, String issend, long newId) {
+    }
+
 
     public void update(String message){
         this.Message = message;
