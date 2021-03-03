@@ -10,11 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -31,9 +34,10 @@ public class WeatherForecast extends AppCompatActivity {
 
         ForecastQuery qr = new ForecastQuery();
         qr.execute("http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric");
-        qr.execute("http://api.openweathermap.org/data/2.5/uvi?appid=7e943c97096a9784391a981c4d878b22&lat=45.348945&lon=-75.759389");
+        myForecast cast = new myForecast();
+        cast.execute("http://api.openweathermap.org/data/2.5/uvi?appid=7e943c97096a9784391a981c4d878b22&lat=45.348945&lon=-75.759389");
         myBitmapAsync bt = new myBitmapAsync();
-        bt.execute("http://openweathermap.org/img/+iconName+.png");
+        bt.execute("https://openweathermap.org/img/w/02d.png");
     }
 
 
@@ -114,6 +118,68 @@ public class WeatherForecast extends AppCompatActivity {
 
          Log.e("ForecastQuery",fromDoInBackground);
      }
+ }
+
+
+ public class myForecast extends AsyncTask<String,Integer,String>{
+
+
+     @Override
+     protected String doInBackground(String... args) {
+
+         try {
+
+             URL url = new URL(args[0]);
+             //open the connection
+             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+             //wait for data:
+             InputStream response = urlConnection.getInputStream();
+
+             //JSON reading:   Look at slide 26
+             //Build the entire string response:
+             BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
+             StringBuilder sb = new StringBuilder();
+
+             String line = null;
+             while ((line = reader.readLine()) != null)
+             {
+                 sb.append(line + "\n");
+             }
+             String result = sb.toString(); //result is the whole string
+
+
+             // convert string to JSON: Look at slide 27:
+             JSONObject jObject = new JSONObject(result);
+
+             //get the float associated with "value"
+             float value = (float) jObject.getDouble("value");
+
+             Log.i("MainActivity", "The uv is now: " + value) ;
+
+         }catch (Exception e){
+         }
+         publishProgress(25);
+         publishProgress(50);
+         publishProgress(75);
+         return "reply";
+
+     }
+
+
+     public void onProgressUpdate(Integer...args){
+
+
+     }
+
+
+     public void onPostExecute(String fromDoInBackgrounds){
+
+
+     }
+
+
+
  }
 
  private Bitmap bitmap = null;
