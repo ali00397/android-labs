@@ -31,4 +31,8 @@
     <string name="Todos">image</string>
     <string name="todo">TODO</string>
     <string name="right">TODO</string>
+    <string name="current">Current Temperature:</string>
+    <string name="min">Minimun Temperature:</string>
+    <string name="max">Maximum Temperature:</string>
+    <string name="uv">UV Rating:</string>
 </resources>
