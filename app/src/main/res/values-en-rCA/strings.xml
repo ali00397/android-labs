@@ -35,4 +35,5 @@
     <string name="min">Minimun Temperature:</string>
     <string name="max">Maximum Temperature:</string>
     <string name="uv">UV Rating:</string>
+    <string name="WeatherForecast">Weather Forecast</string>
 </resources>

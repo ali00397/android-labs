@@ -84,9 +84,15 @@ public class ProfileActivity extends AppCompatActivity {
         EditText emailEdittext = findViewById(R.id.edit2);
         emailEdittext.setText(fromMain.getStringExtra("EmailAddress"));
         Intent goTochatroom = new Intent(this, ChatRoomActivity.class);
+        Intent goToWeatherForecast = new Intent(this,WeatherForecast.class);
         Button gotoChat = findViewById(R.id.goToChat);
+        Button goToWeather = findViewById(R.id.forecast);
         gotoChat.setOnClickListener(v -> {
             startActivity(goTochatroom);
+        });
+        goToWeather.setOnClickListener(clk ->{
+
+            startActivity(goToWeatherForecast);
         });
 
 

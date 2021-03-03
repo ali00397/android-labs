@@ -71,6 +71,12 @@
         android:text="@string/chatrooms"
         />
 
+    <Button
+        android:id="@+id/forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/WeatherForecast"/>
+
 
 </LinearLayout>
 
