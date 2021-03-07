@@ -2,6 +2,7 @@ package com.cst2335.ali00397;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,6 +16,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -37,7 +40,7 @@ public class WeatherForecast extends AppCompatActivity {
         myForecast cast = new myForecast();
         cast.execute("http://api.openweathermap.org/data/2.5/uvi?appid=7e943c97096a9784391a981c4d878b22&lat=45.348945&lon=-75.759389");
         myBitmapAsync bt = new myBitmapAsync();
-        bt.execute("https://openweathermap.org/img/w/02d.png");
+        bt.execute("https://openweathermap.org/img/w/01d.png");
     }
 
 
@@ -187,6 +190,7 @@ public class WeatherForecast extends AppCompatActivity {
  private String urlString = null;
 
 
+
  public class myBitmapAsync extends AsyncTask<String, Integer, String> {
 
 
@@ -207,6 +211,14 @@ public class WeatherForecast extends AppCompatActivity {
 
 
              }
+
+             FileOutputStream outputStream = openFileOutput( "01d" + ".png", Context.MODE_PRIVATE);
+             image.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
+             outputStream.flush();
+             outputStream.close();
+
+
+
          }catch (Exception e){
 
 
@@ -220,8 +232,17 @@ public class WeatherForecast extends AppCompatActivity {
          return "png";
      }
 
+     public boolean fileExistance(String fname){
+         File file = getBaseContext().getFileStreamPath(fname);
+         return file.exists();
+     }
+
+
 
      public void onProgressUpdate(Integer... arg){
+         ProgressBar progressBar = findViewById(R.id.weather);
+         progressBar.setVisibility(View.VISIBLE);
+         progressBar.setVisibility(arg[0]);
 
 
      }
@@ -229,8 +250,10 @@ public class WeatherForecast extends AppCompatActivity {
 
 
      public void onPostExecute(String fromDoInBackground){
-
+         ProgressBar progressBar = findViewById(R.id.weather);
+         progressBar.setVisibility(View.INVISIBLE);
          Log.e("ForecastQuery",fromDoInBackground);
+
      }
  }
 }
