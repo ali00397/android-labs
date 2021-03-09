@@ -58,9 +58,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             ourAdapter.notifyDataSetChanged();
         });
 
-        Button insertbutton = findViewById(R.id.received);
+       // Button insertbutton = findViewById(R.id.received);
 
-        insertbutton.setOnClickListener(click -> {
+     /**   insertbutton.setOnClickListener(click -> {
 
             String message = et.getText().toString();
             String issend = et.getText().toString();
@@ -81,7 +81,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             et.setText("");
             Toast.makeText(this, "Inserted item id:"+newId, Toast.LENGTH_LONG).show();
 
-        });
+        });*/
 
         lists.setOnItemLongClickListener((parents, view, positions, ids) -> {
 
