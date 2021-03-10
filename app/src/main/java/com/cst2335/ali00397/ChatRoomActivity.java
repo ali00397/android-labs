@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -26,41 +27,74 @@ public class ChatRoomActivity extends AppCompatActivity {
     private ArrayList<Message> list = new ArrayList<>();
     MyListAdapter ourAdapter;
     SQLiteDatabase db;
+    SharedPreferences ourpref = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
+        ourpref = getSharedPreferences("Chat",Context.MODE_PRIVATE);
+        String mysavedInfo = ourpref.getString("Important","default value");
+        EditText enteredField = findViewById(R.id.theText);
+        enteredField.setText(mysavedInfo);
 
         ListView lists = findViewById(R.id.list_item);
         lists.setAdapter(ourAdapter = new MyListAdapter());
         Button sendbutton = findViewById(R.id.send);
         Button receivedbutton = findViewById(R.id.received);
         EditText et = findViewById(R.id.theText);
+       // String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID};
+
+       // Cursor cursor = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+       // printCursor(cursor,1);
 
 
         sendbutton.setOnClickListener(bts ->{
 
+            {
 
-            Message oldMessage = new Message(et.getText().toString(),true);
-            list.add(oldMessage);
-            oldMessage.isSend();
-            et.setText("");
-            ourAdapter.notifyDataSetChanged();
+                saveSharedPrefs(enteredField.getText().toString());
+
+                Message oldMessage = new Message(et.getText().toString(),true);
+                list.add(oldMessage);
+                oldMessage.isSend();
+                et.setText("");
+                ourAdapter.notifyDataSetChanged();
+
+        }
+
+
+
+
+
+
         });
 
         receivedbutton.setOnClickListener(clk ->{
-            Message newMessage = new Message(et.getText().toString(),false);
-            newMessage.isSend();
-            list.add(newMessage);
-            et.setText("");
-            ourAdapter.notifyDataSetChanged();
+
+
+            {
+
+                saveSharedPrefs(enteredField.getText().toString());
+
+                Message newMessage = new Message(et.getText().toString(),false);
+                newMessage.isSend();
+                list.add(newMessage);
+                et.setText("");
+                ourAdapter.notifyDataSetChanged();
+
+
+        }
+
+
+
         });
 
        // Button insertbutton = findViewById(R.id.received);
 
-     /**   insertbutton.setOnClickListener(click -> {
+      /** insertbutton.setOnClickListener(click -> {
 
             String message = et.getText().toString();
             String issend = et.getText().toString();
@@ -117,6 +151,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
+    private void saveSharedPrefs(String mysavedInfo){
+        SharedPreferences.Editor editor = ourpref.edit();
+        editor.putString("Important",mysavedInfo);
+        editor.commit();
+
+
+    }
+
     public void loadDataFromDatabase(){
 
         MyOpener dbOpener = new MyOpener(this);
@@ -128,12 +170,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     public void printCursor(Cursor cursor , int version){
         MyOpener dbOpener = new MyOpener(this);
-        db = dbOpener.getWritableDatabase();
+         db = dbOpener.getWritableDatabase();
 
 
-        String [] columns = {MyOpener.COL_MESSAGE};
+        String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID};
         //query all the results from the database:
-        Cursor results = db.query(false, MyOpener.DATABASE_NAME, columns, null, null, null, null, null, null);
+        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, "", null, null, null, null, null);
 
         //Now the results object has rows of results that match the query.
         //find the column indices:
@@ -164,9 +206,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         protected final static String DATABASE_NAME ="ContactsInfoDB";
         protected final static int VERSION_NUM = 1;
-        private final static String TABLE_NAME ="CONTACTS";
-        private final static String COL_MESSAGE = "MESSAGE";
-        private final static String COL_ISSEND = "ISSEND";
+        private final static String TABLE_NAME ="MESSAGES";
+        private final static String COL_MESSAGE = "message";
+        private final static String COL_ISSEND = "issend";
         private final static String COL_ID = "_id";
 
 
