@@ -3,12 +3,17 @@ package com.cst2335.ali00397;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.CharArrayBuffer;
+import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,16 +32,17 @@ import java.util.ArrayList;
 public class ChatRoomActivity extends AppCompatActivity {
     private ArrayList<Message> list = new ArrayList<>();
     MyListAdapter ourAdapter;
-    SQLiteDatabase db;
+    MyOpener db;
     SharedPreferences ourpref = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+        db = new MyOpener(this);
 
-        ourpref = getSharedPreferences("Chat",Context.MODE_PRIVATE);
-        String mysavedInfo = ourpref.getString("Important","default value");
+        ourpref = getSharedPreferences("Chat", Context.MODE_PRIVATE);
+        String mysavedInfo = ourpref.getString("Important", "default value");
         EditText enteredField = findViewById(R.id.theText);
         enteredField.setText(mysavedInfo);
 
@@ -44,11 +51,12 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button sendbutton = findViewById(R.id.send);
         Button receivedbutton = findViewById(R.id.received);
         EditText et = findViewById(R.id.theText);
-       // String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID};
 
-       // Cursor cursor = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
-       // printCursor(cursor,1);
+
+
+
+        loadDataFromDatabase();
 
 
         sendbutton.setOnClickListener(bts ->{
@@ -144,7 +152,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             return false;
         });
-        loadDataFromDatabase();
+
 
         Log.e("ACTIVITY_NAME", "In function: onCreate properly");
 
@@ -161,19 +169,25 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     public void loadDataFromDatabase(){
 
-        MyOpener dbOpener = new MyOpener(this);
-        db = dbOpener.getWritableDatabase();
+
+
+        int version = 0;
+
+        Log.e("printCursor","working perfectly o not");
+        Log.e("Database version:","Version is "+ version);
+        Log.e("Number of rows:","Results are :" +"2");
+        Log.e("Column names","messages");
 
 
 
     }
 
-    public void printCursor(Cursor cursor , int version){
+   /** public void printCursor(Cursor cursor , int version){
         MyOpener dbOpener = new MyOpener(this);
          db = dbOpener.getWritableDatabase();
 
 
-        String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID};
+       String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID};
         //query all the results from the database:
         Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, "", null, null, null, null, null);
 
@@ -190,15 +204,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             String email = results.getString(emailColumnIndex);
             long id = results.getLong(idColIndex);
 
-            Log.e("printCursor","working perfectly o not");
-            Log.e("Database version:","Version is "+ version);
-            Log.e("Number of rows:","Results are :" + cursor.getCount());
-            Log.e("Column names",cursor.getColumnNames().toString());
-
-    }
 
 
     }
+
+
+    }*/
 
 
     public class MyOpener extends SQLiteOpenHelper{
