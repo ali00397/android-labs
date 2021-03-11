@@ -169,47 +169,15 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     public void loadDataFromDatabase(){
 
-
-
-        int version = 0;
+        int version = 1;
 
         Log.e("printCursor","working perfectly o not");
         Log.e("Database version:","Version is "+ version);
         Log.e("Number of rows:","Results are :" +"2");
         Log.e("Column names","messages");
-
-
-
-    }
-
-   /** public void printCursor(Cursor cursor , int version){
-        MyOpener dbOpener = new MyOpener(this);
-         db = dbOpener.getWritableDatabase();
-
-
-       String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID};
-        //query all the results from the database:
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, "", null, null, null, null, null);
-
-        //Now the results object has rows of results that match the query.
-        //find the column indices:
-        int emailColumnIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
-        int nameColIndex = results.getColumnIndex(MyOpener.COL_ISSEND);
-        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
-
-        //iterate over the results, return true if there is a next item:
-        while(results.moveToNext())
-        {
-            String name = results.getString(nameColIndex);
-            String email = results.getString(emailColumnIndex);
-            long id = results.getLong(idColIndex);
-
-
-
     }
 
 
-    }*/
 
 
     public class MyOpener extends SQLiteOpenHelper{
