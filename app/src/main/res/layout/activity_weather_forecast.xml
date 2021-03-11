@@ -9,34 +9,39 @@
 
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:contentDescription="TODO" />
 
     <TextView
+        android:id="@+id/currents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="@string/current"/>
 
     <TextView
+        android:id="@+id/mins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="@string/min"/>
     <TextView
+        android:id="@+id/maxs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="@string/max"/>
     <TextView
+        android:id="@+id/uvs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="@string/uv"/>
 
     <ProgressBar
-        android:id="@+id/weather"
+        android:id="@+id/progression1"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
