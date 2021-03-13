@@ -36,8 +36,8 @@ public class WeatherForecast extends AppCompatActivity {
         setContentView(R.layout.activity_weather_forecast);
 
 
-        ProgressBar bar3 = findViewById(R.id.progression1);
-        bar3.setVisibility(View.VISIBLE);
+        ProgressBar progressBar3 = findViewById(R.id.progression1);
+        progressBar3.setVisibility(View.VISIBLE);
 
         ForecastQuery qr = new ForecastQuery();
         qr.execute("http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric");
@@ -46,7 +46,8 @@ public class WeatherForecast extends AppCompatActivity {
 
     public boolean fileExistance(String fname){
         File file = getBaseContext().getFileStreamPath(fname);
-        return file.exists();   }
+        return file.exists();
+    }
 
 
 
@@ -162,8 +163,9 @@ public class WeatherForecast extends AppCompatActivity {
 
         public void onProgressUpdate(Integer ... values){
             super.onProgressUpdate(values);
-            ProgressBar bar = findViewById(R.id.progression1);
-            bar.setVisibility(values[0]);
+            ProgressBar progressBar = findViewById(R.id.progression1);
+            progressBar.setVisibility(values[0]);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
 
@@ -179,8 +181,8 @@ public class WeatherForecast extends AppCompatActivity {
             UVInfo.setText(getText(R.string.uv)+": "+ utralviolet);
             ImageView img = findViewById(R.id.imageView4);
             img.setImageBitmap(image);
-            ProgressBar bar2 = findViewById(R.id.progression1);
-            bar2.setVisibility(View.INVISIBLE);
+            ProgressBar progressBar2= findViewById(R.id.progression1);
+            progressBar2.setVisibility(View.INVISIBLE);
         }
 
 
