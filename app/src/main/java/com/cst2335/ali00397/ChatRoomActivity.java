@@ -32,14 +32,16 @@ import java.util.ArrayList;
 public class ChatRoomActivity extends AppCompatActivity {
     private ArrayList<Message> list = new ArrayList<>();
     MyListAdapter ourAdapter;
-    MyOpener db;
+    SQLiteDatabase db;
+
     SharedPreferences ourpref = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
-        db = new MyOpener(this);
+
+
 
         ourpref = getSharedPreferences("Chat", Context.MODE_PRIVATE);
         String mysavedInfo = ourpref.getString("Important", "default value");
@@ -51,12 +53,23 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button sendbutton = findViewById(R.id.send);
         Button receivedbutton = findViewById(R.id.received);
         EditText et = findViewById(R.id.theText);
+        String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID };
+        Cursor cursor = db.query(false,MyOpener.TABLE_NAME,columns,null,null,null,null,null,null );
+
+        printCursor(cursor,1);
+
 
 
 
 
 
         loadDataFromDatabase();
+
+
+
+
+
+
 
 
         sendbutton.setOnClickListener(bts ->{
@@ -167,56 +180,50 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
-    public void loadDataFromDatabase(){
+   public void loadDataFromDatabase(){
+      MyOpener dbOpener = new MyOpener(this);
+      db = dbOpener.getWritableDatabase();
+    }
 
-        int version = 1;
+   public void printCursor(Cursor cursor, int version){
+        MyOpener dbOpener = new MyOpener(this);
+        db = dbOpener.getWritableDatabase();
 
-        Log.e("printCursor","working perfectly o not");
-        Log.e("Database version:","Version is "+ version);
-        Log.e("Number of rows:","Results are :" +"2");
-        Log.e("Column names","messages");
+       String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID };
+
+       Cursor results = db.query(false,MyOpener.TABLE_NAME,columns,null,null,null,null,null,null );
+
+
+       int messageColumnIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
+       int issendColIndex = results.getColumnIndex(MyOpener.COL_ISSEND);
+       int idcolIndex = results.getColumnIndex(MyOpener.COL_ID);
+
+
+       while(results.moveToNext()){
+
+           String message = results.getString(messageColumnIndex);
+           String issend = results.getString(issendColIndex);
+           long id = results.getLong(idcolIndex);
+
+           Log.e("printCursor","working perfectly o not");
+           Log.e("Database version:","Version is "+ version);
+           Log.e("Number of rows:","Results are :" +results.getCount());
+           Log.e("Column names:",results.getColumnName(1));
+           Log.d("Row is:" , "Message:" + message + " Issend: "+ issend);
+
+           list.add(new Message(message,issend,id));
+
+       }
+
+
+
+
     }
 
 
 
 
-    public class MyOpener extends SQLiteOpenHelper{
 
-
-        protected final static String DATABASE_NAME ="ContactsInfoDB";
-        protected final static int VERSION_NUM = 1;
-        private final static String TABLE_NAME ="MESSAGES";
-        private final static String COL_MESSAGE = "message";
-        private final static String COL_ISSEND = "issend";
-        private final static String COL_ID = "_id";
-
-
-
-
-        public MyOpener(Context ctx)
-        {
-            super(ctx, DATABASE_NAME, null, VERSION_NUM);
-
-
-    }
-
-        @Override
-        public void onCreate(SQLiteDatabase db)
-        {
-            db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + COL_MESSAGE + " text,"
-                    + COL_ISSEND+ "text)");
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL( "DROP TABLE IF EXISTS " + TABLE_NAME);
-
-            //Create the new table:
-            onCreate(db);
-        }
-
-    }
 
 
         public  class MyListAdapter extends BaseAdapter {
