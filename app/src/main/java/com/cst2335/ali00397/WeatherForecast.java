@@ -81,7 +81,7 @@ public class WeatherForecast extends AppCompatActivity {
 
                     if (eventType == XmlPullParser.START_TAG) {
                         //If you get here, then you are pointing at a start tag
-                        if (xpp.getName().equals("Temperature")) {
+                        if (xpp.getName().equals("temperature")) {
                             //If you get here, then you are pointing to a <Weather> start tag
 
                             mininum = xpp.getAttributeValue(null, "min");
@@ -122,8 +122,9 @@ public class WeatherForecast extends AppCompatActivity {
 
                         }
                     }
+                    eventType = xpp.next();
                 }
-                eventType = xpp.next();
+
             } catch (Exception e) {
                 e.printStackTrace();
 
