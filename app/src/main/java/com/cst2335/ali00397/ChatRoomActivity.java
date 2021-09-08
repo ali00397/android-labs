@@ -53,17 +53,15 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button sendbutton = findViewById(R.id.send);
         Button receivedbutton = findViewById(R.id.received);
         EditText et = findViewById(R.id.theText);
-        String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID };
-        Cursor cursor = db.query(false,MyOpener.TABLE_NAME,columns,null,null,null,null,null,null );
-
-        printCursor(cursor,1);
-
-
-
-
-
 
         loadDataFromDatabase();
+
+
+
+
+
+
+
 
 
 
@@ -79,10 +77,34 @@ public class ChatRoomActivity extends AppCompatActivity {
                 saveSharedPrefs(enteredField.getText().toString());
 
                 Message oldMessage = new Message(et.getText().toString(),true);
-                list.add(oldMessage);
-                oldMessage.isSend();
-                et.setText("");
+          //      list.add(oldMessage);
+            //    oldMessage.isSend();
+
+                String message = et.getText().toString();
+             //   String issend = et.getText().toString();
+
+                ContentValues newRowValues = new ContentValues();
+
+                newRowValues.put(MyOpener.COL_MESSAGE,message);
+            //    newRowValues.put(MyOpener.COL_ISSEND,issend);
+
+                long newId = db.insert(MyOpener.DATABASE_NAME, null, newRowValues);
+
+                Message newMessages = new Message(message,true,newId);
+
+                list.add(newMessages);
                 ourAdapter.notifyDataSetChanged();
+
+             //   et.setText("");
+            //    et.setText("");
+                Toast.makeText(this, "Inserted item id:"+newId, Toast.LENGTH_LONG).show();
+
+
+
+
+
+                ourAdapter.notifyDataSetChanged();
+                et.setText("");
 
         }
 
@@ -101,11 +123,30 @@ public class ChatRoomActivity extends AppCompatActivity {
                 saveSharedPrefs(enteredField.getText().toString());
 
                 Message newMessage = new Message(et.getText().toString(),false);
-                newMessage.isSend();
-                list.add(newMessage);
-                et.setText("");
+              //  newMessage.isSend();
+              //  list.add(newMessage);
+
+                String message = et.getText().toString();
+              //  String issend = et.getText().toString();
+
+                ContentValues newRowValues = new ContentValues();
+
+                newRowValues.put(MyOpener.COL_MESSAGE,message);
+               // newRowValues.put(MyOpener.COL_ISSEND,false);
+
+                long newId = db.insert(MyOpener.DATABASE_NAME, null, newRowValues);
+
+                Message newMessages = new Message(message,false,newId);
+
+                list.add(newMessages);
                 ourAdapter.notifyDataSetChanged();
 
+              //  et.setText("");
+              //  et.setText("");
+                Toast.makeText(this, "Inserted item id:"+newId, Toast.LENGTH_LONG).show();
+
+                ourAdapter.notifyDataSetChanged();
+                et.setText("");
 
         }
 
@@ -183,13 +224,41 @@ public class ChatRoomActivity extends AppCompatActivity {
    public void loadDataFromDatabase(){
       MyOpener dbOpener = new MyOpener(this);
       db = dbOpener.getWritableDatabase();
-    }
+      int version = 1;
+
+       String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID };
+       Cursor results = db.query(false,MyOpener.TABLE_NAME,columns,null,null,null,null,null,null );
+
+       int messageColumnIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
+       int issendColIndex = results.getColumnIndex(MyOpener.COL_ISSEND);
+       int idcolIndex = results.getColumnIndex(MyOpener.COL_ID);
+
+
+       while(results.moveToNext()){
+
+           String message = results.getString(messageColumnIndex);
+           String issend = results.getString(issendColIndex);
+           long id = results.getLong(idcolIndex);
+
+           Log.e("printCursor","working perfectly o not");
+           Log.e("Database version:","Version is "+ version);
+           Log.e("Number of rows:","Results are :" +results.getCount());
+           Log.e("Column names:",results.getColumnName(1));
+           Log.d("Row is:" , "Message:" + message + " Issend: "+ issend);
+
+           list.add(new Message(message,issend,id));
+
+       }
+
+
+
+   }
 
    public void printCursor(Cursor cursor, int version){
         MyOpener dbOpener = new MyOpener(this);
         db = dbOpener.getWritableDatabase();
 
-       String [] columns = {MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND,MyOpener.COL_ID };
+       String [] columns = {MyOpener.COL_ID, MyOpener.COL_MESSAGE,MyOpener.COL_ISSEND};
 
        Cursor results = db.query(false,MyOpener.TABLE_NAME,columns,null,null,null,null,null,null );
 
