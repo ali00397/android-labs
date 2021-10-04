@@ -20,10 +20,11 @@
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/personal_information"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:labelFor="@id/edit"
-        android:hint="@string/personal_information"
+        android:minHeight="48dp"
         android:text="@string/personal_information"
         tools:ignore="LabelFor" />
 
@@ -37,9 +38,11 @@
         android:id="@+id/editView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:labelFor="@id/editView"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
-        android:importantForAutofill="no" />
+        android:labelFor="@id/editView"
+        android:minHeight="48dp"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/button3"
